@@ -11,5 +11,5 @@ This valheim cheat includes:
 - Your items can't lose durability
 - Instantly explore the map (Press F5 ingame and type exploremap to use it once)
 - Infinite ammo/arrows (after shooting your arrow count won't decrease)
-- Guardian power is spammable (Like Eikthyr/Elder w/e you want)
+- No cooldown on Guardian power (Spam Eikthyr/Elder w/e you want)
 - No movement penalty for wearing armor/weight or charging bow
