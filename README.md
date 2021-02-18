@@ -12,7 +12,7 @@ Drop the dll you can download [here](https://github.com/thyraxx/ValheimCheat/rel
 - 2.5x bigger inventory (clips under chests layout though)
 - 5 times faster swim (Press F5 ingame and type swim to toggle it on/off)
 - You won't lose stuff if you die
-- When you die only the 4x8 inventory size stuff gets put into the grave, everything else in the bigger inventory won't be in the grave.
+- When you die only the 4x8 inventory size stuff gets put into the grave, everything else in the bigger inventory won't be in the grave. (So your friends think you actually dropped your stuff)
 - No stamina usage
 - Your skills won't go down if you die.
 - Your inventory weight is always 0, also you can never be encumbered just to be sure
