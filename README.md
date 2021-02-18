@@ -1,12 +1,14 @@
+This was made more or less as a joke to experiment in a friends server.
+
 # Install
 
 After installing BepInEx, don't forget to extract the files that are needed for BepInEx [read more](https://github.com/NeighTools/UnityDoorstop/issues/10)
-Drop the dll you can download [here]() into valheim root folder BepInEx/plugins
+
+Drop the dll you can download [here](/releases/tag/v0.0.1) into valheim root folder BepInEx/plugins
 
 
-This was made more or less as a joke to experiment in a friends server.
 
-This valheim cheat includes:
+#### This valheim cheat includes:
 - 2.5x bigger inventory (clips under chests layout though)
 - 5 times faster swim (Press F5 ingame and type swim to toggle it on/off)
 - You won't lose stuff if you die
