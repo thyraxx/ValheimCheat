@@ -17,7 +17,7 @@ Drop the dll you can download [here](https://github.com/thyraxx/ValheimCheat/rel
 - Your skills won't go down if you die.
 - Your inventory weight is always 0, also you can never be encumbered just to be sure
 - Teleport with items/materials in inventory that aren't supposed to be teleportable
-- Pickup range is 3x bigger
+- AutoPickup range is 3x bigger
 - Your items can't lose durability
 - Instantly explore the map (Press F5 ingame and type exploremap to use it once)
 - Infinite ammo/arrows (after shooting your arrow count won't decrease)
