@@ -1,5 +1,5 @@
 
-This was made more or less as a joke to experiment in a friends server. If you're looking for more/probably better cheats/other things ValheimPlus or SkToolbox valheim might be somthing for you.
+This was made more or less as a joke to experiment in a friends server. If you're looking for more/probably better cheats/other things ValheimPlus or SkToolbox valheim might be something for you.
 
 # Install
 
