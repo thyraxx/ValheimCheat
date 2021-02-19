@@ -5,7 +5,7 @@ This was made more or less as a joke to experiment in a friends server. If you'r
 
 After installing BepInEx, don't forget to extract the files that are needed for BepInEx to run Valheim [read more](https://github.com/NeighTools/UnityDoorstop/issues/10)
 
-Drop the dll you can download [here](https://github.com/thyraxx/ValheimCheat/releases/tag/v0.0.1) into valheim root folder BepInEx/plugins
+Drop the dll you can download [here](https://github.com/thyraxx/ValheimCheat/releases/tag/v0.0.1) into valheim/BepInEx/plugins folder
 
 
 
