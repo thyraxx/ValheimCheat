@@ -23,5 +23,5 @@ Drop the dll you can download [here](https://github.com/thyraxx/ValheimCheat/rel
 - Your items can't lose durability
 - Instantly explore the map (Press F5 ingame and type exploremap to use it once)
 - Infinite ammo/arrows (after shooting your arrow count won't decrease)
-~~- No cooldown on Guardian power (Spam Eikthyr/Elder w/e you want)~~ Apparently this doesn't work anymore.
+- ~~No cooldown on Guardian power (Spam Eikthyr/Elder w/e you want)~~ Apparently this doesn't work anymore.
 - No movement penalty for wearing armor/weight or charging bow
