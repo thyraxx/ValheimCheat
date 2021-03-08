@@ -1,3 +1,4 @@
+Some things might not work anymore due to the game being updated.
 
 This was made more or less as a joke to experiment in a friends server. If you're looking for more/probably better cheats/other things ValheimPlus or SkToolbox valheim might be something for you.
 
@@ -22,5 +23,5 @@ Drop the dll you can download [here](https://github.com/thyraxx/ValheimCheat/rel
 - Your items can't lose durability
 - Instantly explore the map (Press F5 ingame and type exploremap to use it once)
 - Infinite ammo/arrows (after shooting your arrow count won't decrease)
-- No cooldown on Guardian power (Spam Eikthyr/Elder w/e you want)
+~~- No cooldown on Guardian power (Spam Eikthyr/Elder w/e you want)~~ Apparently this doesn't work anymore.
 - No movement penalty for wearing armor/weight or charging bow
