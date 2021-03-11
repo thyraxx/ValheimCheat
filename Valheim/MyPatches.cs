@@ -1,4 +1,4 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 using Steamworks;
 using System;
 using System.Collections.Generic;
@@ -89,21 +89,6 @@ namespace Valheim
                 //__instance.Print("Deleting your own graves is " + (graves.Enabled ? "enabled" : "disabled"));
                 //return;
             //}
-        }
-
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(ZNet), "Kick")]
-        public static void ZNetKick_PrePatch(ref string user, ref bool ___m_isServer)
-        {
-            Console.print("Kicking user " + user);
-            ___m_isServer = true;
-        }
-
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(ZNet), "Kick")]
-        public static void ZNetKick_PostPatch(ref bool ___m_isServer)
-        {
-            ___m_isServer = false;
         }
 
         [HarmonyPrefix]
