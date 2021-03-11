@@ -117,7 +117,6 @@ namespace Valheim
 
             if (__instance.m_attackType == Attack.AttackType.Projectile)
             {
-                ___m_ammoItem = null;
                 ItemDrop.ItemData itemData = ___m_character.GetAmmoItem();
 
                 ___m_character.GetInventory().RemoveItem(itemData, 0);
