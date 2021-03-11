@@ -137,18 +137,18 @@ namespace Valheim
         }
 
         [HarmonyPrefix]
-        [HarmonyPatch(typeof(Sign), "UpdateText")]
-        public static void SignUpdateText_PrePatch(ref Text ___m_textWidget)
+        [HarmonyPatch(typeof(Player), "ActivateGuardianPower")]
+        public static bool PlayerActivateGuardianPower_PrePatch(ref StatusEffect ___m_guardianSE, ref Player ___m_localPlayer)
         {
-            ___m_textWidget.color = Color.red;
-        }
+            ___m_localPlayer.GetSEMan().AddStatusEffect(___m_guardianSE.name, true);
+            List<Player> list = new List<Player>();
+            Player.GetPlayersInRange(___m_localPlayer.transform.position, 10f, list);
+		    foreach (Player player in list)
+		    {
+			    player.GetSEMan().AddStatusEffect(___m_guardianSE.name, true);
+		    }
 
-
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(Player), "UpdateGuardianPower")]
-        public static void PlayerActivateGuardianPower_PrePatch(ref float ___m_guardianPowerCooldown)
-        {
-            ___m_guardianPowerCooldown = 0f;
+            return false;
         }
 
         [HarmonyPrefix]
