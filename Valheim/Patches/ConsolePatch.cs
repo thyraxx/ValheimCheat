@@ -32,8 +32,6 @@ namespace Valheim
                 return;
             }
 
-
-
             if (text.StartsWith("serveronlypublic"))
             {
                 ServerFilter.Enabled = !ServerFilter.Enabled;

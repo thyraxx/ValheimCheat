@@ -4,14 +4,11 @@ using HarmonyLib;
 
 namespace Valheim
 {
-    [BepInPlugin(pluginGuid, pluginName, pluginVersion)]
+    [BepInPlugin(pluginGuid, "ValheimCheat", "0.1.1")]
     public class ValheimMod : BaseUnityPlugin
     {
-        public const string pluginGuid = "valheimmod.myfirstmod";
-        public const string pluginName = "My first valheim!";
-        public const string pluginVersion = "0.0.1";
+        public const string pluginGuid = "valheimmod.thyraxx.cheat";
         Harmony harmony = new Harmony(pluginGuid);
-
 
         public new static ManualLogSource Logger;
         public void Awake()

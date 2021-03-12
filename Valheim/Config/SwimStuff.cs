@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Valheim.Config
+namespace Valheim
 {
-    public static class ServerFilter
+    public static class SwimStuff
     {
+        public static float CustomSpeed { get; set; } = 2f;
+        public static float CustomAcceleration { get; set; } = 0.05f;
         public static bool Enabled { get; set; } = false;
-        public static bool HasPassword { get; set; } = true;
-        public static int Amount { get; set; } = 200;
     }
 }

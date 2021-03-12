@@ -1,13 +1,6 @@
 using HarmonyLib;
-using Steamworks;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using UnityEngine.UI;
-using static ItemDrop.ItemData;
+using static ZNet;
 
 namespace Valheim
 {
@@ -15,182 +8,69 @@ namespace Valheim
     [HarmonyPatch]
     class MyPatches
     {
-        public static SwimStuff swim = new SwimStuff();
-        public static Graves graves = new Graves();
+        //[HarmonyPrefix]
+        //[HarmonyPatch(typeof(Minimap), "UpdatePlayerPins")]
+        //public static bool MinimapLoadMapData_PrePatch(float dt, ref List<ZNet.PlayerInfo> ___m_tempPlayerInfo, ref List<Minimap.PinData> ___m_playerPins, ref Minimap __instance)
+        //{
+        //    ___m_tempPlayerInfo.Clear();
+        //    ZNet.instance.GetOtherPublicPlayers(___m_tempPlayerInfo);
+        //    List<Player> players = Player.GetAllPlayers();
+        //    foreach(Player play in players)
+        //    {
+        //        //Console.print(play.m_name + " : " + play.m_position);
+        //        //Console.print(play.GetPlayerName() + " : " + play.GetCenterPoint());
+        //    }
+
+        //    //Console.print(___m_publicReferencePosition);
+        //    //___m_publicReferencePosition = true;
+
+        //    foreach (Minimap.PinData pin in ___m_playerPins)
+        //    {
+        //        __instance.RemovePin(pin);
+        //    }
+        //    ___m_playerPins.Clear();
+        //    foreach (ZNet.PlayerInfo playerInfo in ___m_tempPlayerInfo)
+        //    {
+        //        Minimap.PinData item = __instance.AddPin(Vector3.zero, Minimap.PinType.Player, "", false, false);
+        //        ___m_playerPins.Add(item);
+        //    }
+
+        //    for (int i = 0; i < ___m_tempPlayerInfo.Count; i++)
+        //    {
+        //        Minimap.PinData pinData = ___m_playerPins[i];
+        //        ZNet.PlayerInfo playerInfo2 = ___m_tempPlayerInfo[i];
+        //        if (pinData.m_name == playerInfo2.m_name)
+        //        {
+        //            pinData.m_pos = Vector3.MoveTowards(pinData.m_pos, playerInfo2.m_position, 200f * dt);
+        //        }
+        //        else
+        //        {
+        //            pinData.m_name = playerInfo2.m_name;
+        //            pinData.m_pos = players[0].GetCenterPoint();
+        //        }
+        //    }
+
+        //    //Console.print("Name: " + players[1].GetPlayerName() + " Position: " + players[1].GetCenterPoint());
+
+        //    //Console.print(___m_tempPlayerInfo[0].m_name);
+
+        //    return false;
+        //}
 
         [HarmonyPrefix]
-        [HarmonyPatch(typeof(Skills), "OnDeath")]
-        public static bool Skills_PrePatch()
+        [HarmonyPatch(typeof(ZNet), "GetOtherPublicPlayers")]
+        public static bool ZNetGetOtherPublicPlayers_PrePatch(List<ZNet.PlayerInfo> playerList, ref List<ZNet.PlayerInfo> ___m_players, ref ZDOID ___m_characterID)
         {
-            Console.print("Died, not lowering skills.");
-            return false;
-        }
-
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(Inventory), "UpdateTotalWeight")]
-        public static bool UpdateTotalWeight_PrePatch(ref float ___m_totalWeight)
-        {
-            ___m_totalWeight = 0f;
-            return false;
-        }
-
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(Player), "AutoPickup")]
-        public static void AutoPickupRange_PostPatch(ref float ___m_autoPickupRange)
-        {
-            ___m_autoPickupRange = 6f;
-        }
-
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(Player), "UpdateStats")]
-        public static void UpdateStats_PrePatch(ref float ___m_stamina, ref float ___m_maxStamina)
-        {
-            ___m_stamina = ___m_maxStamina;
-        }
-
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(Player), "IsEncumbered")]
-        public static bool PlayerIsEncumbered_PrePatch(ref bool __result)
-        {
-            __result = false;
-            return false;
-        }
-
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(Humanoid), "DrainEquipedItemDurability")]
-        public static void DrainEquipedItemDurability_PrePatch(ItemDrop.ItemData item, float dt)
-        {
-            item.m_durability = item.GetMaxDurability();
-        }
-
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(Console), "InputText")]
-        public static void InputText_PostPatch(ref Console __instance)
-        {
-
-            string text = global::Console.instance.m_input.text;
-            if (text.StartsWith("exploremap"))
+            foreach (ZNet.PlayerInfo playerInfo in ___m_players)
             {
-                Minimap.instance.ExploreAll();
-                return;
+                    ZDOID characterID = playerInfo.m_characterID;
+                    if (!characterID.IsNone() && !(playerInfo.m_characterID == ___m_characterID))
+                    {
+                        PlayerInfo info = playerInfo;
+                        info.m_publicPosition = true;
+                        playerList.Add(playerInfo);
+                    }
             }
-
-            if (text.StartsWith("swim"))
-            {
-                swim.Enabled = !swim.Enabled;
-                __instance.Print("Swim is " + (swim.Enabled ? "enabled" : "disabled"));
-                return;
-            }
-
-            // Wasn't working properly in multiplayer
-            //if (text.StartsWith("delgraves"))
-            //{
-                //graves.Enabled = !graves.Enabled;
-                //__instance.Print("Deleting your own graves is " + (graves.Enabled ? "enabled" : "disabled"));
-                //return;
-            //}
-        }
-
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(Character), "UpdateSwiming")]
-        public static void CharacterUpdateSwiming_PostPatch(ref float ___m_swimSpeed, ref float ___m_swimAcceleration)
-        {
-            if (swim.Enabled)
-            {
-                swim.CustomSpeed = 10f;
-                swim.CustomAcceleration = 1f;
-            }
-            else
-            {
-                swim.CustomSpeed = 2f;
-                swim.CustomAcceleration = 0.05f;
-            }
-
-            ___m_swimSpeed = swim.CustomSpeed;
-            ___m_swimAcceleration = swim.CustomAcceleration;
-        }
-
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(Attack), "UseAmmo")]
-        public static bool AttackUseAmmo_PrePatch(ref Attack __instance, ref ItemDrop.ItemData ___m_ammoItem, ref Humanoid ___m_character, ref ItemDrop.ItemData ___m_weapon, ref bool __result)
-        {
-
-            if (__instance.m_attackType == Attack.AttackType.Projectile)
-            {
-                ItemDrop.ItemData itemData = ___m_character.GetAmmoItem();
-
-                ___m_character.GetInventory().RemoveItem(itemData, 0);
-                ___m_ammoItem = itemData;
-
-                __result = true;
-                return false;
-            }
-            return true;
-        }
-
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(Inventory), "IsTeleportable")]
-        public static bool InventoryIsTeleportable_PrePatch(ref bool __result)
-        {
-            __result = true;
-            return false;
-        }
-
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(Player), "ActivateGuardianPower")]
-        public static bool PlayerActivateGuardianPower_PrePatch(ref StatusEffect ___m_guardianSE, ref Player ___m_localPlayer)
-        {
-            ___m_localPlayer.GetSEMan().AddStatusEffect(___m_guardianSE.name, true);
-            List<Player> list = new List<Player>();
-            Player.GetPlayersInRange(___m_localPlayer.transform.position, 10f, list);
-		    foreach (Player player in list)
-		    {
-			    player.GetSEMan().AddStatusEffect(___m_guardianSE.name, true);
-		    }
-
-            return false;
-        }
-
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(EnvMan), "IsFreezing")]
-        public static bool EnvManIsFreezing_PrePatch(ref bool __result)
-        {
-            __result = false;
-            return false;
-        }
-
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(Player), "UpdateMovementModifier")]
-        public static void CharacterUpdateWalking_PrePatch(ref float ___m_equipmentMovementModifier)
-        {
-            ___m_equipmentMovementModifier = 0f;
-        }
-
-        [HarmonyPostfix]
-        [HarmonyPatch(typeof(Inventory), MethodType.Constructor, new Type[] { typeof(string), typeof(Sprite), typeof(int), typeof(int) })]
-        public static void InventoryConstructor_PrePatch(string name, Sprite bkg, int w, int h, ref int ___m_height)
-        {
-            if (name.Equals("Inventory"))
-                ___m_height = 10;
-        }
-
-        [HarmonyPrefix]
-        [HarmonyPatch(typeof(Inventory), "MoveInventoryToGrave")]
-        public static bool InventoryMoveInventoryToGrave_PrePatch(ref Inventory original, ref Action ___m_onChanged, ref int ___m_width, ref int ___m_height, ref List<ItemDrop.ItemData> ___m_inventory)
-        {
-            ___m_inventory.Clear();
-            ___m_width = 8;
-            ___m_height = 4;
-
-            foreach (ItemDrop.ItemData itemData in original.GetAllItems())
-            {
-                if (!itemData.m_shared.m_questItem && !itemData.m_equiped)
-                {
-                    ___m_inventory.Add(itemData);
-                }
-            }
-            original.m_onChanged();
-            ___m_onChanged();
             return false;
         }
     }
