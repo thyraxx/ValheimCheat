@@ -8,7 +8,8 @@ After installing BepInEx, don't forget to extract the files that are needed for 
 
 Drop the dll you can download [here](https://github.com/thyraxx/ValheimCheat/releases/tag/v0.0.1) into valheim/BepInEx/plugins folder
 
-
+##### Console
+You can open console with **F5**
 
 #### This valheim cheat includes:
 - 2.5x bigger inventory (clips under chests layout though)
@@ -27,5 +28,5 @@ Drop the dll you can download [here](https://github.com/thyraxx/ValheimCheat/rel
 - No movement penalty for wearing armor/weight or charging bow
 
 ##### Main menu
-- Search for more/less servers, use **serverlimit \<number>** for the amount of server it can find (not including the ones that aren't matched)
-- Set server filter for only public or servers with only a password, use **hasserverpassword <true/false>**
+- Search for more/less servers, use **serverlimit \<number>** console command for the amount of server it can find (not including the ones that aren't matched)
+- Set server filter for only public or servers with only a password, use **hasserverpassword <true/false>** console command
