@@ -23,5 +23,9 @@ Drop the dll you can download [here](https://github.com/thyraxx/ValheimCheat/rel
 - Your items can't lose durability
 - Instantly explore the map (Press F5 ingame and type exploremap to use it once)
 - Infinite ammo/arrows (after shooting your arrow count won't decrease)
-- ~~No cooldown on Guardian power (Spam Eikthyr/Elder w/e you want)~~ Apparently this doesn't work anymore.
+- No cooldown on Guardian power (Spam your power however you want)
 - No movement penalty for wearing armor/weight or charging bow
+
+##### Main menu
+- Search for more/less servers, use **serverlimit \<number>** for the amount of server it can find (not including the ones that aren't matched)
+- Set server filter for only public or servers with only a password, use **hasserverpassword <true/false>**
