@@ -1,4 +1,4 @@
-Some things might not work anymore due to the game being updated.
+## !!<strong>Big chance this mod might not work anymore due to the game being updated.</strong>!!
 
 This was made more or less as a joke to experiment in a friends server. If you're looking for more/probably better cheats/other things ValheimPlus or SkToolbox valheim might be something for you.
 
